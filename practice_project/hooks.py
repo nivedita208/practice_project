@@ -5,6 +5,10 @@ app_description = "ERPNext practice app"
 app_email = "nivedita123@gmail.com"
 app_license = "MIT"
 
+doctype_js = {
+    "Opportunity": "public/js/estimation_request.js"
+}
+
 # Includes in <head>
 # ------------------
 
