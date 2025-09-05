@@ -9,6 +9,20 @@ doctype_js = {
     "Opportunity": "public/js/estimation_request.js"
 }
 
+doc_events = {
+    "Quotation": {
+        "validate": "practice_project.custom_code.quotation.validate_quotation"
+    }
+}
+
+doc_events = {
+    "Sales Invoice": {
+        "validate": "practice_project.custom_code.sales_invoice_custom.validate_sales_invoice"
+    }
+}
+
+
+
 # Includes in <head>
 # ------------------
 
