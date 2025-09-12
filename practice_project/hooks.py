@@ -21,6 +21,37 @@ doc_events = {
     }
 }
 
+doc_events = {
+    "Stock Entry": {
+        "validate": "practice_project.custom_code.stock_entry_custom.validate_stock_entry"
+    }
+}
+
+#####lead-hooks#############
+doc_events = {
+    "Lead": {
+        "after_insert": "practice_project.custom_code.lead_hooks.create_events_from_meetings",
+        "on_update": "practice_project.custom_code.lead_hooks.create_events_from_meetings",
+        "before_save": "practice_project.custom_code.lead_priority.set_priority_status"
+    }
+}
+
+
+#Auto-update old Leads daily
+scheduler_events = {
+    "daily": ["practice_project.custom_code.update_old_leads"]
+}
+
+
+doctype_list_js = {
+    "Lead": "public/js/status.js" 
+    }
+
+
+
+
+
+
 
 
 # Includes in <head>
