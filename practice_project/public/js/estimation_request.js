@@ -119,9 +119,12 @@ frappe.ui.form.on("Opportunity",{
                 },
                 callback: function(serverReply){
                     if(!serverReply.exc){
-                        frappe.msgprint("Estimation Created: " + serverReply.message);
+                        frappe.msgprint("Estimation Request Created: " + serverReply.message);
                         console.log(serverReply.message);
                         estimation_popup.hide();
+
+
+                        frm.reload_doc();  // Reload form to show linked Estimation Request
                     }
 
                 }
@@ -137,3 +140,4 @@ frappe.ui.form.on("Opportunity",{
 }
 
 );
+

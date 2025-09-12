@@ -25,8 +25,14 @@ def create_estimation_request(opportunity, customer, date=None, product_details=
 
         est.insert(ignore_permissions=True)
 
+        # Link back Estimation Request to Opportunity
+        # op = frappe.get_doc("Opportunity", opportunity)
+        # op.custom_opportunity = est.name
+        # op.save(ignore_permissions=True)
 
+        frappe.db.set_value("Opportunity", opportunity, "custom_opportunity", est.name)
+        
         return est.name
 
     except Exception as e:
-        frappe.throw(f"Failed to create Estimation: {str(e)}")
+        frappe.throw(f"Failed to create Estimation Request: {str(e)}")
