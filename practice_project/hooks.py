@@ -32,7 +32,7 @@ doc_events = {
     "Lead": {
         "after_insert": "practice_project.custom_code.lead_hooks.create_events_from_meetings",
         "on_update": "practice_project.custom_code.lead_hooks.create_events_from_meetings",
-        "before_save": "practice_project.custom_code.lead_priority.set_priority_status"
+       
     }
 }
 

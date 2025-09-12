@@ -20,12 +20,24 @@ def create_events_from_meetings(doc, method):
         event.starts_on = meeting.meeting_date or now_datetime()
         # event.owner = doc.lead_owner
         event.lead = doc.name
+        
+         # Add Lead Owner as participant
+        if doc.lead_owner:
+            event.append("event_participants", {
+                "reference_doctype": "User",
+                "reference_docname": doc.lead_owner
+            })
+
+        # Optionally add the Lead itself as participant
+        event.append("event_participants", {
+            "reference_doctype": "Lead",
+            "reference_docname": doc.name
+        })
+        
+        
         event.save(ignore_permissions=True)
 
-        event.append("event_participants", {
-        "reference_doctype": "User",
-        "reference_docname": doc.lead_owner
-    })
+        
 
         # Notify Lead owner
         if doc.lead_owner:
