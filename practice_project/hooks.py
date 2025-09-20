@@ -47,6 +47,53 @@ doctype_list_js = {
     "Lead": "public/js/status.js" 
     }
 
+doc_events = {
+    "Sales Order": {
+        "before_submit": "practice_project.custom_code.sales_order.check_quotation_approval"
+    }
+}
+
+doctype_js = {
+    "Quotation": "public/js/quotation.js"
+}
+
+## mockup order ##
+doc_events = {
+    "Sales Order": {
+        "on_submit": "practice_project.api.create_mockup_for_so"
+    }
+}
+
+doc_events = {
+    "Mockup Order": {
+        "on_update": "practice_project.practice_project.doctype.mockup_order.mockup_order.update_so_design_status",
+        "validate": "practice_project.custom_code.work_order.validate_work_order",
+        "on_submit": "practice_project.custom_code.work_order.create_job_cards",
+    }
+}
+
+doctype_js = {
+    "Work Order": "public/js/work_order.js"
+}
+
+doc_events = {
+    "Stock Entry": {
+        "on_submit": "practice_project.custom_code.wastage_handler.update_wastage_on_stock_entry"
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
