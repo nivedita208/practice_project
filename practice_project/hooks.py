@@ -78,9 +78,39 @@ doctype_js = {
 
 doc_events = {
     "Stock Entry": {
-        "on_submit": "practice_project.custom_code.wastage_handler.update_wastage_on_stock_entry"
+        "on_submit": "practice_project.custom_code.wastage_handler.update_wastage_on_stock_entry",
+        "validate" : "practice_project.custom_code.stock_entry_custom.stock_entry_validate",
     }
 }
+
+doc_events = {
+    "Purchase Receipt": {
+        "on_submit":"practice_project.custom_code.purchase_receipt.purchase_receipt_on_submit"
+    }
+}
+
+scheduler_events = {
+    "daily": [
+        "practice_project.custom_code.employee_alerts.check_employee_validity_alerts"
+    ]
+}
+
+# hooks.py
+
+doc_events = {
+    #  auto-set leave days
+    "Leave Allocation": {
+        "before_submit": "practice_project.custom_code.leave_allocation.auto_leave_allocation"
+    },
+
+    #block if SSA not approved
+    "Payroll Entry": {
+        "validate": "practice_project.custom_code.payroll.block_payroll_if_ssa_not_approved"
+    }
+}
+
+
+
 
 
 
