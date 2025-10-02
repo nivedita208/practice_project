@@ -5,109 +5,66 @@ app_description = "ERPNext practice app"
 app_email = "nivedita123@gmail.com"
 app_license = "MIT"
 
-doctype_js = {
-    "Opportunity": "public/js/estimation_request.js"
-}
 
-doc_events = {
-    "Quotation": {
-        "validate": "practice_project.custom_code.quotation.validate_quotation"
-    }
-}
 
-doc_events = {
-    "Sales Invoice": {
-        "validate": "practice_project.custom_code.sales_invoice_custom.validate_sales_invoice"
-    }
-}
 
-doc_events = {
-    "Stock Entry": {
-        "validate": "practice_project.custom_code.stock_entry_custom.validate_stock_entry"
-    }
-}
-
-#####lead-hooks#############
 doc_events = {
     "Lead": {
-        "after_insert": "practice_project.custom_code.lead_hooks.create_events_from_meetings",
-        "on_update": "practice_project.custom_code.lead_hooks.create_events_from_meetings",
-       
+        "validate": "practice_project.custom_code.lead_hooks.create_events_from_meetings"
     }
+    
 }
 
-
-#Auto-update old Leads daily
 scheduler_events = {
-    "daily": ["practice_project.custom_code.update_old_leads"]
+    "daily": [
+        "practice_project.custom_code.lead_priority.update_old_leads",
+        "practice_project.custom_code.employee_alerts.check_employee_validity_alerts",
+        ]
 }
-
 
 doctype_list_js = {
     "Lead": "public/js/status.js" 
     }
 
-doc_events = {
-    "Sales Order": {
-        "before_submit": "practice_project.custom_code.sales_order.check_quotation_approval"
-    }
-}
-
 doctype_js = {
-    "Quotation": "public/js/quotation.js"
-}
+    "Opportunity": "public/js/estimation_request.js"
+    }
+
+# doctype_js = {"Opportunity": "public/js/opportunity_custom.js"}
+
+
+
+
+
+# -------------------------------------------------------------------------
+
+# doctype_js = {
+#     "Quotation": "public/js/quotation.js"
+# }
+
+
 
 ## mockup order ##
-doc_events = {
-    "Sales Order": {
-        "on_submit": "practice_project.api.create_mockup_for_so"
-    }
-}
 
-doc_events = {
-    "Mockup Order": {
-        "on_update": "practice_project.practice_project.doctype.mockup_order.mockup_order.update_so_design_status",
-        "validate": "practice_project.custom_code.work_order.validate_work_order",
-        "on_submit": "practice_project.custom_code.work_order.create_job_cards",
-    }
-}
 
-doctype_js = {
-    "Work Order": "public/js/work_order.js"
-}
 
-doc_events = {
-    "Stock Entry": {
-        "on_submit": "practice_project.custom_code.wastage_handler.update_wastage_on_stock_entry",
-        "validate" : "practice_project.custom_code.stock_entry_custom.stock_entry_validate",
-    }
-}
+    
+    
+    
+# doctype_js = {
+#     "Work Order": "public/js/work_order.js"
+# }
 
-doc_events = {
-    "Purchase Receipt": {
-        "on_submit":"practice_project.custom_code.purchase_receipt.purchase_receipt_on_submit"
-    }
-}
 
-scheduler_events = {
-    "daily": [
-        "practice_project.custom_code.employee_alerts.check_employee_validity_alerts"
-    ]
-}
 
-# hooks.py
 
-doc_events = {
-    #  auto-set leave days
-    "Leave Allocation": {
-        "before_submit": "practice_project.custom_code.leave_allocation.auto_leave_allocation"
-    },
 
-    #block if SSA not approved
-    "Payroll Entry": {
-        "validate": "practice_project.custom_code.payroll.block_payroll_if_ssa_not_approved"
-    }
-}
+
+
+
+
+
+
 
 
 
