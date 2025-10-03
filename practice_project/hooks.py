@@ -11,6 +11,9 @@ app_license = "MIT"
 doc_events = {
     "Lead": {
         "validate": "practice_project.custom_code.lead_hooks.create_events_from_meetings"
+    },
+    "Production Status Dashboard2": {
+        "validate": "practice_project.custom_code.production_status_dashboard2.validate_cost_center"
     }
     
 }
@@ -27,7 +30,8 @@ doctype_list_js = {
     }
 
 doctype_js = {
-    "Opportunity": "public/js/estimation_request.js"
+    "Opportunity": "public/js/estimation_request.js",
+    "Production Status Dashboard2": "public/js/production_status_dashboard2.js"
     }
 
 # doctype_js = {"Opportunity": "public/js/opportunity_custom.js"}
