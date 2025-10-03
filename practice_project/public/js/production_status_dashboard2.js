@@ -6,8 +6,9 @@ frappe.ui.form.on('Production Status Dashboard2', {
           );
           return;
       }
+      
       load_dashboard(frm);   // Initial dashboard load
-      start_auto_refresh(frm); // Auto-refresh every 20 seconds
+      start_auto_refresh(frm); // Auto-refresh every 30 seconds
 
       // Add Refresh button
       frm.add_custom_button(__('Refresh Dashboard'), () => {
@@ -26,6 +27,7 @@ function load_dashboard(frm) {
       args: { cost_center: frm.doc.cost_center },
       callback: function(r) {
           if (r.message) {
+            console.log(r.message);
               let html = render_dashboard(r.message, frm);
               frm.fields_dict.dashboard_html.$wrapper.html(html);
           }
@@ -36,22 +38,32 @@ function load_dashboard(frm) {
 // Map status to CSS class for table badges
 function getStatusClass(status) {
     status = status.toLowerCase();
-    if (status === "not started" || status === "open") return "status-pending";       // Gray
-    if (status === "in process" || status === "work in progress") return "status-in-process"; // Blue
-    if (status === "on hold") return "status-on-hold";      // Amber
-    if (status === "overdue") return "status-overdue";      // Red
-    if (status === "completed today" || status === "completed") return "status-completed-today"; // Green
+    if (status === "not started" || status === "open") 
+      return "status-pending";       // Gray
+    if (status === "in process" || status === "work in progress") 
+      return "status-in-process"; // Blue
+    if (status === "on hold") 
+      return "status-on-hold";      // Amber
+    if (status === "overdue") 
+      return "status-overdue";      // Red
+    if (status === "completed today" || status === "completed") 
+      return "status-completed-today"; // Green
     return "status-pending"; // fallback
 }
 
 // Map KPI type to class
 function getKpiClass(type) {
     switch(type) {
-        case "pending": return "kpi-pending";
-        case "in_process": return "kpi-in-process";
-        case "on_hold": return "kpi-on-hold";
-        case "overdue": return "kpi-overdue";
-        case "completed_today": return "kpi-completed-today";
+        case "pending": 
+        return "kpi-pending";
+        case "in_process": 
+        return "kpi-in-process";
+        case "on_hold": 
+        return "kpi-on-hold";
+        case "overdue": 
+        return "kpi-overdue";
+        case "completed_today": 
+        return "kpi-completed-today";
         default: return "kpi-pending";
     }
 }
@@ -64,25 +76,67 @@ function render_dashboard(data, frm) {
   let html = `
   <style>
     /* KPI Cards */
-    .kpi-card { border-radius: 12px; padding: 20px; margin: 8px; text-align: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08); color: #fff; font-weight: 600;
-        transition: transform 0.25s, box-shadow 0.25s; }
-    .kpi-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
-    .kpi-value { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
-    .kpi-label { font-size: 14px; color: rgba(255,255,255,0.9); font-weight: 500; }
+    .kpi-card { 
+        border-radius: 12px; 
+        padding: 20px; 
+        margin: 8px; 
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+        color: #fff; font-weight: 600;
+        transition: transform 0.25s, 
+        box-shadow 0.25s; 
+        }
+    .kpi-card:hover { 
+        transform: translateY(-4px); 
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15); 
+        }
+    .kpi-value { 
+        font-size: 28px; 
+        font-weight: 700; 
+        margin-bottom: 6px; 
+        }
+    .kpi-label { 
+        font-size: 14px; 
+        color: rgba(255,255,255,0.9); 
+        font-weight: 500; 
+        }
 
-    h4 { margin-top: 20px; margin-bottom: 10px; }
+    h4 { 
+        margin-top: 20px; 
+        margin-bottom: 10px; 
+        }
 
-    table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; font-size: 13px;
-        background: var(--bg-color); color: var(--text-color); }
-    th { background: var(--control-bg); color: var(--text-color); font-weight: 600; padding: 8px;
-        border-bottom: 2px solid var(--border-color); }
-    td { padding: 8px; border-bottom: 1px solid var(--border-color); }
-    tr:hover { background: var(--hover-color); }
+    table { 
+        width: 100%; 
+        border-collapse: collapse; 
+        margin-top: 15px; 
+        margin-bottom: 25px; 
+        font-size: 13px;
+        background: var(--bg-color); color: var(--text-color); 
+        }
+    th { 
+        background: var(--control-bg); 
+        color: var(--text-color); 
+        font-weight: 600; 
+        padding: 8px;
+        border-bottom: 2px solid var(--border-color); 
+        }
+    td { 
+        padding: 8px; 
+        border-bottom: 1px solid var(--border-color); 
+        }
+    tr:hover { 
+        background: var(--hover-color); 
+    }
 
     /* Status badges */
-    .status-badge { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 11px;
-        color: #fff; font-weight: 600; }
+    .status-badge { 
+        display: inline-block; 
+        padding: 3px 8px; 
+        border-radius: 12px; 
+        font-size: 11px;
+        color: #fff; font-weight: 600; 
+        }
     .status-pending { background: #6c757d; }       /* Gray */
     .status-in-process { background: #007bff; }    /* Blue */
     .status-on-hold { background: #ffbf00; }       /* Amber */
@@ -130,8 +184,13 @@ function render_dashboard(data, frm) {
   <h4>Work Orders</h4>
   <table>
     <tr>
-      <th>Work Order</th><th>Production Item</th><th>Req Qty</th><th>Produced Qty</th>
-      <th>Status</th><th>Planned Start Date</th><th>Planned End Date</th>
+      <th>Work Order</th>
+      <th>Production Item</th>
+      <th>Req Qty</th>
+      <th>Produced Qty</th>
+      <th>Status</th>
+      <th>Planned Start Date</th>
+      <th>Planned End Date</th>
     </tr>
     ${wo.map(w => {
         let woStatus = w.status;
@@ -140,8 +199,8 @@ function render_dashboard(data, frm) {
         }
         if (woStatus === "Completed" && k.completed_today_wos) woStatus = "Completed Today";
         return `<tr>
-          <td><a href="#Form/Work Order/${w.name}">${w.name}</a></td>
-                    <td>${w.production_item || ""}</td>
+          <td>${w.name}</a></td>
+          <td>${w.production_item || ""}</td>
           <td>${w.qty || ""}</td>
           <td>${w.produced_qty || ""}</td>
           <td><span class="status-badge ${getStatusClass(woStatus)}">${woStatus}</span></td>
@@ -155,8 +214,14 @@ function render_dashboard(data, frm) {
   <h4>Job Cards</h4>
   <table>
     <tr>
-      <th>Job Card</th><th>Work Order</th><th>Operation</th><th>Work Station</th>
-      <th>Qty</th><th>Status</th><th>Expected Start Date</th><th>Expected End Date</th>
+      <th>Job Card</th>
+      <th>Work Order</th>
+      <th>Operation</th>
+      <th>Work Station</th>
+      <th>Qty</th>
+      <th>Status</th>
+      <th>Expected Start Date</th>
+      <th>Expected End Date</th>
     </tr>
     ${jc.map(j => {
         let jcStatus = j.status;
@@ -165,7 +230,7 @@ function render_dashboard(data, frm) {
         }
         if (jcStatus === "Completed" && k.completed_today_jcs) jcStatus = "Completed Today";
         return `<tr>
-          <td><a href="#Form/Job Card/${j.name}">${j.name}</a></td>
+          <td>${j.name}</a></td>
           <td>${j.work_order || ""}</td>
           <td>${j.operation || ""}</td>
           <td>${j.workstation || ""}</td>
@@ -186,6 +251,7 @@ function start_auto_refresh(frm) {
     if (frm.auto_refresh_interval) return; // Prevent multiple intervals
     frm.auto_refresh_interval = setInterval(() => {
         frm.reload_doc();
-    }, 20000); // 20 seconds
+        console.log("reloaded");
+    }, 30000); // 30 seconds ,millisec = sec * 1000
 }
 
