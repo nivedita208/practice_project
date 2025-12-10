@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-31 07:54:08.886138",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "note_date",
+  "note_summary",
+  "next_step"
+ ],
+ "fields": [
+  {
+   "fieldname": "note_date",
+   "fieldtype": "Date",
+   "label": "Note Date"
+  },
+  {
+   "fieldname": "note_summary",
+   "fieldtype": "Small Text",
+   "label": "Note Summary"
+  },
+  {
+   "fieldname": "next_step",
+   "fieldtype": "Small Text",
+   "label": "Next Step"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-08-31 07:54:08.886138",
+ "modified_by": "Administrator",
+ "module": "Practice Project",
+ "name": "Lead Note",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

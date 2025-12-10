@@ -1,0 +1,183 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:EST25-{#####}",
+ "creation": "2025-09-04 23:34:27.170627",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "opportunity",
+  "customer",
+  "product_item",
+  "estimation_status",
+  "column_break_4ksly",
+  "description",
+  "sales_person",
+  "section_break_9a0hg",
+  "eestimation_raw_material",
+  "section_break_3lrjp",
+  "estimation_operation",
+  "section_break_owhux",
+  "delivery_charges",
+  "total_raw_material",
+  "total_operations",
+  "column_break_g68qb",
+  "profit_percentage",
+  "sales_rate",
+  "grand_total",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "opportunity",
+   "fieldtype": "Link",
+   "label": "Opportunity",
+   "options": "Opportunity"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "product_item",
+   "fieldtype": "Link",
+   "label": "product_item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "sales_person",
+   "fieldtype": "Link",
+   "label": "Sales Person",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "delivery_charges",
+   "fieldtype": "Currency",
+   "label": "Delivery Charges"
+  },
+  {
+   "fieldname": "profit_percentage",
+   "fieldtype": "Percent",
+   "label": "Profit Percentage"
+  },
+  {
+   "fieldname": "sales_rate",
+   "fieldtype": "Currency",
+   "label": "Sales Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_9a0hg",
+   "fieldtype": "Section Break",
+   "label": "Raw Material List"
+  },
+  {
+   "fieldname": "eestimation_raw_material",
+   "fieldtype": "Table",
+   "label": "Estimation Raw Material",
+   "options": "Estimation Raw Material"
+  },
+  {
+   "fieldname": "section_break_3lrjp",
+   "fieldtype": "Section Break",
+   "label": "Operation List"
+  },
+  {
+   "fieldname": "estimation_operation",
+   "fieldtype": "Table",
+   "label": "Estimation Operation",
+   "options": "Estimation Operation"
+  },
+  {
+   "fieldname": "total_raw_material",
+   "fieldtype": "Currency",
+   "label": "Total Raw Material",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_operations",
+   "fieldtype": "Currency",
+   "label": "Total Operations",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4ksly",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_g68qb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_owhux",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "estimation_status",
+   "fieldtype": "Select",
+   "label": "Estimation Status",
+   "options": "Draft\nOpen\nQuoted\nClosed"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Estimation",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-10-02 10:56:18.805487",
+ "modified_by": "Administrator",
+ "module": "Practice Project",
+ "name": "Estimation",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Blue",
+   "title": "Draft"
+  },
+  {
+   "color": "Green",
+   "title": "Submitted"
+  }
+ ],
+ "track_changes": 1
+}

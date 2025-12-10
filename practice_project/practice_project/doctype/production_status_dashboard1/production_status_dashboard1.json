@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-02 16:29:52.583292",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "cost_center",
+  "company",
+  "workstation",
+  "operation",
+  "column_break_ojpnw",
+  "date_from",
+  "date_to",
+  "show_completed_today",
+  "show_overdue",
+  "html_section",
+  "dashboard_html"
+ ],
+ "fields": [
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "workstation",
+   "fieldtype": "Link",
+   "label": "Workstation",
+   "options": "Workstation"
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Link",
+   "label": "Operation ",
+   "options": "Operation"
+  },
+  {
+   "fieldname": "column_break_ojpnw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_from",
+   "fieldtype": "Date",
+   "label": "From Date"
+  },
+  {
+   "fieldname": "date_to",
+   "fieldtype": "Date",
+   "label": "To Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_completed_today",
+   "fieldtype": "Check",
+   "label": "Show Completed Today"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_overdue",
+   "fieldtype": "Check",
+   "label": "Show Overdue"
+  },
+  {
+   "fieldname": "html_section",
+   "fieldtype": "Section Break",
+   "label": "HTML"
+  },
+  {
+   "fieldname": "dashboard_html",
+   "fieldtype": "HTML",
+   "label": "Dashboard"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-10-02 16:29:52.583292",
+ "modified_by": "Administrator",
+ "module": "Practice Project",
+ "name": "Production Status Dashboard1",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

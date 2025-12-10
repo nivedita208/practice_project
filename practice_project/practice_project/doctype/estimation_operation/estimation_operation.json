@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-04 23:55:06.050646",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "operation_name",
+  "operation_time",
+  "machine",
+  "machine_hour_rate",
+  "operation_cost"
+ ],
+ "fields": [
+  {
+   "fieldname": "operation_name",
+   "fieldtype": "Data",
+   "label": "Operation Name"
+  },
+  {
+   "fieldname": "operation_time",
+   "fieldtype": "Float",
+   "label": "Operation Time",
+   "options": "Min/n Hrs"
+  },
+  {
+   "fieldname": "machine",
+   "fieldtype": "Data",
+   "label": "Machine",
+   "options": "Machine"
+  },
+  {
+   "fieldname": "machine_hour_rate",
+   "fieldtype": "Currency",
+   "label": "Machine Hour Rate"
+  },
+  {
+   "fieldname": "operation_cost",
+   "fieldtype": "Currency",
+   "label": "Operation Cost",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-09-05 01:19:45.439093",
+ "modified_by": "Administrator",
+ "module": "Practice Project",
+ "name": "Estimation Operation",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
