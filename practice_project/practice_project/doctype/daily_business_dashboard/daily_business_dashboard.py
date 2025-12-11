@@ -10,7 +10,8 @@ class DailyBusinessDashboard(Document):
 @frappe.whitelist()
 def get_dashboard_data(from_date, to_date):
     data = {}
-
+    
+    # counts
     def get_count(doctype, date_field):
         return frappe.db.count(doctype, {date_field: ["between", [from_date, to_date]]})
 
@@ -19,4 +20,23 @@ def get_dashboard_data(from_date, to_date):
     data["quotations"] = get_count("Quotation", "transaction_date")
     data["events"] = get_count("Event", "starts_on")
 
+    
+     # lists for tables
+    data["so_list"] = frappe.get_all(
+        "Sales Order",
+        filters={"transaction_date": ["between", [from_date, to_date]]},
+        fields=["name", "transaction_date"]
+    )
+
+    data["si_list"] = frappe.get_all(
+        "Sales Invoice",
+        filters={"posting_date": ["between", [from_date, to_date]]},
+        fields=["name", "posting_date"]
+    )
+
+    data["q_list"] = frappe.get_all(
+        "Quotation",
+        filters={"transaction_date": ["between", [from_date, to_date]]},
+        fields=["name", "transaction_date"]
+    )
     return data
